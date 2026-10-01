@@ -1,0 +1,14 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.Material3.CardView.Filled" android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp" app:cardCornerRadius="24dp" android:clickable="true" android:focusable="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:padding="16dp">
+        <ImageView android:id="@+id/vIcon" android:layout_width="52dp" android:layout_height="52dp" android:padding="13dp"
+            android:background="@drawable/bg_icon" app:tint="?attr/colorOnPrimaryContainer"/>
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="16dp">
+            <TextView android:id="@+id/vTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceTitleMedium"/>
+            <TextView android:id="@+id/vSub" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodySmall" android:alpha="0.75"/>
+            <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/vBar" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" app:trackThickness="8dp" app:trackCornerRadius="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

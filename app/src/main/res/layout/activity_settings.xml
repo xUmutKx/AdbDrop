@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp" android:clipToPadding="false" android:background="?android:colorBackground">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+        <ImageButton android:id="@+id/btnBack" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:src="@drawable/ic_back"
+            app:tint="?attr/colorOnSurface" android:contentDescription="Back" android:background="?attr/selectableItemBackgroundBorderless"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="Settings"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium" android:textColor="?attr/colorPrimary"/>
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView style="@style/Widget.Material3.CardView.Filled" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" app:cardCornerRadius="24dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Appearance" android:textAppearance="?attr/textAppearanceTitleMedium"/>
+            <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/swAmoled" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="AMOLED black theme"/>
+            <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/swDyn" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Material You dynamic colors"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView style="@style/Widget.Material3.CardView.Filled" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" app:cardCornerRadius="24dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Access backend" android:textAppearance="?attr/textAppearanceTitleMedium"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Only this phone needs Root/Shizuku, and only to reach protected folders. USB itself needs neither." android:textAppearance="?attr/textAppearanceBodySmall"/>
+            <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/tg" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:singleSelection="true" app:selectionRequired="true">
+                <Button android:id="@+id/bNone" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Normal"/>
+                <Button android:id="@+id/bRoot" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Root"/>
+                <Button android:id="@+id/bShizuku" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Shizuku"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView style="@style/Widget.Material3.CardView.Filled" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" app:cardCornerRadius="24dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Nearby &amp; browser mode" android:textAppearance="?attr/textAppearanceTitleMedium"/>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.Material3.TextInputLayout.OutlinedBox" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Device name (shown to others)">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etName" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.Material3.TextInputLayout.OutlinedBox" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Receive folder">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRecv" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textUri"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.Material3.TextInputLayout.OutlinedBox" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Browser mode port">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etPort" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.Material3.TextInputLayout.OutlinedBox" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="Browser mode upload folder">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etHome" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textUri"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button android:id="@+id/btnFiles" style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Grant all-files access"/>
+            <Button android:id="@+id/btnPc" style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Share a browser link (PC / any device)"/>
+            <Button android:id="@+id/btnAdb" style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Enable ADB over Wi-Fi (root)"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
+</ScrollView>

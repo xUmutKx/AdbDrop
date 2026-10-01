@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="16dp" android:clipToPadding="false" android:background="?android:colorBackground">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+        <ImageButton android:id="@+id/btnBack" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:src="@drawable/ic_back"
+            app:tint="?attr/colorOnSurface" android:contentDescription="Back" android:background="?attr/selectableItemBackgroundBorderless"/>
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Send" android:textAppearance="?attr/textAppearanceHeadlineMedium" android:textColor="?attr/colorPrimary"/>
+            <TextView android:id="@+id/tvItems" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodySmall" android:alpha="0.75"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="240dp">
+        <com.roket.adbdrop.RadarView android:id="@+id/radar" android:layout_width="match_parent" android:layout_height="match_parent"/>
+        <ImageView android:id="@+id/center" android:layout_width="80dp" android:layout_height="80dp" android:layout_gravity="center" android:padding="20dp"
+            android:background="@drawable/bg_icon" android:src="@drawable/ic_send" app:tint="?attr/colorOnPrimaryContainer"/>
+    </FrameLayout>
+
+    <TextView android:id="@+id/tvState" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:textAppearance="?attr/textAppearanceHeadlineSmall"/>
+    <TextView android:id="@+id/tvDetail" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:layout_marginTop="4dp" android:alpha="0.8" android:textAppearance="?attr/textAppearanceBodyMedium"/>
+    <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/prog" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="14dp" android:visibility="gone" app:trackThickness="10dp" app:trackCornerRadius="5dp"/>
+
+    <LinearLayout android:id="@+id/devList" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="16dp"/>
+    <TextView android:id="@+id/tvHelp" android:layout_width="match_parent" android:layout_height="wrap_content" android:alpha="0.7" android:textAppearance="?attr/textAppearanceBodySmall"
+        android:text="Nobody here yet? On the other phone open AdbDrop and keep Visible on.\n\nUSB cable: connect both phones with a USB-C cable. On one of them set USB to \u201CControl connected device\u201D (notification &gt; USB settings). That phone will list the other one: tap it and allow."/>
+    <Button android:id="@+id/btnDone" style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Done" android:visibility="gone" android:layout_marginTop="12dp"/>
+    <Button android:id="@+id/btnLink" style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Other device has no app? Share a browser link"/>
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,32 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.usb.host" android:required="false"/>
+    <uses-feature android:name="android.hardware.usb.accessory" android:required="false"/>
+    <application android:label="AdbDrop" android:icon="@mipmap/ic_launcher"
+        android:theme="@style/Theme.App" android:usesCleartextTraffic="true">
+        <activity android:name=".MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SettingsActivity" android:exported="false"/>
+        <activity android:name=".SendActivity" android:exported="false"/>
+        <activity android:name=".NearbyActivity" android:exported="false"/>
+        <activity android:name=".UsbAttachActivity" android:exported="true" android:theme="@android:style/Theme.NoDisplay" android:excludeFromRecents="true">
+            <intent-filter><action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"/></intent-filter>
+            <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" android:resource="@xml/accessory_filter"/>
+        </activity>
+        <service android:name=".ServerService" android:exported="false" android:foregroundServiceType="dataSync"/>
+        <service android:name=".ReceiverService" android:exported="false" android:foregroundServiceType="dataSync"/>
+        <receiver android:name=".ActionReceiver" android:exported="false"/>
+        <provider android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku" android:enabled="true"
+            android:exported="true" android:multiprocess="false"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+    </application>
+</manifest>
