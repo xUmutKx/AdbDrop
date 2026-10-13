@@ -22,7 +22,9 @@ public class FileServer {
         this.port = port; this.key = key; this.sh = sh; this.home = (home == null || home.isEmpty()) ? "/sdcard/Download" : home; this.log = log;
     }
     public void start() throws IOException {
-        ss = new ServerSocket(port);
+        ss = new ServerSocket();
+        ss.setReceiveBufferSize(1 << 20); // set before bind so the window can scale up
+        ss.bind(new java.net.InetSocketAddress(port));
         new Thread(() -> {
             while (!ss.isClosed()) { try { Socket s = ss.accept(); pool.execute(() -> handle(s)); } catch (IOException e) { break; } }
         }).start();
@@ -48,7 +50,7 @@ public class FileServer {
 
     void handle(Socket s) {
         try (s) {
-            s.setTcpNoDelay(true); s.setSoTimeout(30000);
+            s.setTcpNoDelay(true); s.setSoTimeout(30000); s.setReceiveBufferSize(1 << 20); s.setSendBufferSize(1 << 20);
             InputStream in = new BufferedInputStream(s.getInputStream(), 1 << 16);
             OutputStream out = new BufferedOutputStream(s.getOutputStream(), 1 << 16);
             String rl = line(in); if (rl == null) return;
@@ -62,7 +64,7 @@ public class FileServer {
             String fp = u.getQueryParameter("p"); String path = u.getPath();
             if ("/dl".equals(path) && fp != null) download(out, fp);
             else if ("/zip".equals(path) && fp != null) zip(out, fp);
-            else if ("/up".equals(path) && p[0].equals("PUT")) upload(in, out, fp == null ? home : fp, u.getQueryParameter("n"), len);
+            else if ("/up".equals(path) && p[0].equals("PUT")) { s.setSoTimeout(0); upload(in, out, fp == null ? home : fp, u.getQueryParameter("n"), len); }
             else if (fp == null) home(out);
             else page(out, fp);
             out.flush();
