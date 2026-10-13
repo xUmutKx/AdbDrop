@@ -182,7 +182,9 @@ public class MainActivity extends BaseActivity {
         tvStatus.setText(vis ? "Visible to nearby devices" : "Hidden");
         tvSub.setText(Hub.myName(MainActivity.this) + "  \u00B7  saves to " + Hub.destDir(MainActivity.this).getPath());
         Peer u = Hub.usb;
-        tvUsb.setText(u != null && u.alive ? "USB cable: connected to " + (u.peerName.isEmpty() ? "a phone" : u.peerName) : "USB cable: not connected");
+        String access = Hub.shellMode.equals("root") ? "Root (su)" : Hub.shellMode.equals("shizuku") ? "Shizuku" : "Normal (no root)";
+        tvUsb.setText((u != null && u.alive ? "USB cable: connected to " + (u.peerName.isEmpty() ? "a phone" : u.peerName) : "USB cable: not connected")
+            + "\nAccess: " + access + "\nPC over USB: run  adb forward tcp:8080 tcp:8080  then open http://localhost:8080 in the PC browser.");
         String st = Hub.tState; boolean busy = Hub.busy();
         boolean recent = (st.equals("done") || st.equals("declined") || st.equals("error")) && System.currentTimeMillis() - Hub.tEnd < 8000;
         if (busy) {
